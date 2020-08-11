@@ -32,6 +32,7 @@ class Ball
 
   void draw()
   {
+    stroke(255);
     ellipse(this.position_x, this.position_y, this.size, this.size);
   }
 }
