@@ -1,4 +1,4 @@
-float allareacir;
+float eachblockarea,eachcirarea,allcir=0;
 Ball[] nextBall;
 Sqr[] nextSqr;
 int n = 5;
@@ -14,8 +14,11 @@ void setup()
     float r_size = random(50, 300);
     nextBall[i] = new Ball(r_width, r_height, r_size);
     nextSqr[i]= new Sqr(r_width, r_height, r_size,r_size);
-    nextBall[i].getArea();
+    eachcirarea=nextBall[i].getBallArea();
+    allcir=allcir+eachcirarea;
+    
  }
+    print("total ball area : "+allcir);
 }
 void draw()
 {
@@ -23,7 +26,7 @@ void draw()
   background(255);
    for(int p=0;p<5;p++)
    {
-    allareacir=0+nextBall[p].ballarea;
+
     if(nextBall[p].show)
       {
        nextBall[p].draw();
@@ -32,22 +35,32 @@ void draw()
       {
       nextSqr[p].draw();
       }
-   } 
+    
+ } 
  
 }
 void mousePressed()
 {
+  float k;
   for(int p=0;p<n;p++)
   {
-    if(dist(nextBall[p].position_x,nextBall[p].position_y,mouseX,mouseY)<(nextBall[p].size/2))
+ 
+    if(dist(mouseX,mouseY,nextBall[p].position_x,nextBall[p].position_y)<(nextBall[p].size/2))
     {
-      nextBall[p].show=false;
+      delay(150);
+      if(nextBall[p].show==true)
+      {
+      allcir=allcir-nextBall[p].getBallArea();
+      }
+      nextBall[p].show=false; 
     }
-    if(nextSqr[p].startx<mouseX&&mouseX<(nextSqr[p].startx+nextSqr[p].sqrwidth)&&nextSqr[p].starty<mouseY&&mouseY<(nextSqr[p].starty+nextSqr[p].sqrheight))
+    else if(nextSqr[p].startx<mouseX&&mouseX<(nextSqr[p].startx+nextSqr[p].sqrwidth)&&nextSqr[p].starty<mouseY&&mouseY<(nextSqr[p].starty+nextSqr[p].sqrheight))
     {
     nextSqr[p].show=false;
     }
+   k=nextBall[p].getBallArea();
   }
+print(" Ball area left "+allcir); 
 }  
 public class Ball
 {
@@ -55,7 +68,6 @@ public class Ball
   float position_x;
   float position_y;
   float size;
-  float ballarea;
   //color randomColor = color(random(255), random(255), random(255)) ;
   public Ball(float position_x, float position_y, float size)  // Constructor
   {
@@ -67,14 +79,14 @@ public class Ball
   {
     ellipse(position_x,position_y,size,size);
   }
-  public float getArea()
+  public float getBallArea()
    {
      float ballarea;  
      ballarea=(this.size/2)*(this.size/2)*3.14;
-     print(ballarea+" ");
-     this.ballarea=ballarea;
+     //this.ballarea=ballarea;
+     //print(ballarea+" ");
      return ballarea;
-     
+
    }
 }
 public class Sqr
@@ -95,4 +107,13 @@ public class Sqr
   {
     rect(this.startx,this.starty,this.sqrwidth,this.sqrheight);
   }
+  public float getBlockArea()
+   {
+     float blockarea;  
+     blockarea=this.sqrwidth*this.sqrheight;
+     //this.ballarea=ballarea;
+     //print(ballarea+" ");
+     return blockarea;
+
+   }
 }
