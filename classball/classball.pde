@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-//test
-=======
->>>>>>> 5db8058c74ba8ea08295fa1492749eb348efbe4d
+
 float eachblockarea, eachcirarea, allcir = 0, allsqr = 0;
 int n = 5;
 Ball[] nextBall;
@@ -76,6 +73,7 @@ public class Ball
   float position_x;
   float position_y;
   float size;
+  color randomcolor = color(random(255), random(255), random(255)) ; 
   public Ball(float position_x, float position_y, float size)  // Constructor
   {
     this.position_x = position_x;
@@ -85,6 +83,7 @@ public class Ball
   void draw()
   {
     ellipse(position_x, position_y, size, size);
+    fill(randomcolor) ;
   }
   public float getBallArea()
    {
