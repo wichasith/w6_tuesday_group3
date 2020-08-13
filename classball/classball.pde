@@ -1,5 +1,5 @@
 
-float eachblockarea, eachcirarea, allcir = 0, allsqr = 0;
+float eachblockarea, eachcirarea, allcir = 0, allsqr = 0 , allarea;
 int n = 5;
 Ball[] nextBall;
 Sqr[] nextSqr;
@@ -20,9 +20,11 @@ void setup()
     eachblockarea = nextSqr[i].getBlockArea();
     allcir = allcir + eachcirarea;
     allsqr = allsqr + eachblockarea;
+    allarea = allcir + allsqr ;
   }
     println("Total ball area : " + allcir);
     println("Total square area : " + allsqr);
+    println("All Total is : " + allarea) ;
 }
 
 void draw()
@@ -63,9 +65,13 @@ void mousePressed()
       }
       nextSqr[p].show = false;
     }
+    allarea = allcir + allsqr ;
+
   }
 println("\nBall area left " + allcir); 
 println("Block area left " + allsqr);
+println("All Total left : " + allarea) ;
+
 }
 public class Ball
 {
