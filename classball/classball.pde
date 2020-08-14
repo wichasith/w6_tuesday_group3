@@ -89,7 +89,6 @@ public class Ball
   void draw()
   {
     ellipse(position_x, position_y, size, size);
-    fill(randomcolor) ;
   }
   public float getBallArea()
    {
