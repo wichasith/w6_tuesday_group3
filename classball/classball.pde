@@ -1,9 +1,7 @@
-
 float eachblockarea, eachcirarea, allcir = 0, allsqr = 0 , allarea;
 int n = 5;
 Ball[] nextBall;
 Sqr[] nextSqr;
-
 void setup()
 {
   size(1000, 800);
@@ -26,20 +24,23 @@ void setup()
     println("Total square area : " + allsqr);
     println("All Total is : " + allarea) ;
 }
-
 void draw()
 {
   background(255);
    for(int p = 0; p < 5; p++)
    {
-
+     delay(20) ;
     if(nextBall[p].show)
       {
-       nextBall[p].draw();
+      color randomcolor = color(random(255), random(255), random(255)) ;
+      fill(randomcolor);
+        nextBall[p].draw();
       }
      if(nextSqr[p].show)
       {
-      nextSqr[p].draw();
+      color randomcolor = color(random(255), random(255), random(255)) ;
+      fill(randomcolor);
+       nextSqr[p].draw();
       }
    } 
 }
@@ -66,12 +67,10 @@ void mousePressed()
       nextSqr[p].show = false;
     }
     allarea = allcir + allsqr ;
-
   }
 println("\nBall area left " + allcir); 
 println("Block area left " + allsqr);
 println("All Total left : " + allarea) ;
-
 }
 public class Ball
 {
@@ -89,6 +88,7 @@ public class Ball
   void draw()
   {
     ellipse(position_x, position_y, size, size);
+    fill(randomcolor) ;
   }
   public float getBallArea()
    {
